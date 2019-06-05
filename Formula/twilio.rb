@@ -1,6 +1,6 @@
 require "language/node"
 
-class TwilioCli < Formula
+class Twilio < Formula
   desc "unleash the power of Twilio from your command prompt"
   homepage "https://github.com/twilio/twilio-cli"
   url "https://registry.npmjs.org/twilio-cli/-/twilio-cli-1.1.2.tgz"

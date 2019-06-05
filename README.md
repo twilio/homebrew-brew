@@ -8,10 +8,10 @@ This software is in pre-release status and not currently supported. We are looki
 
 Install the Twilio CLI with
 
-    $ brew install twilio/cli/twilio-cli
+    $ brew install twilio/brew/twilio
 
     OR
 
-    $ brew tap twilio/cli && brew install twilio-cli
+    $ brew tap twilio/brew && brew install twilio
 
 For more information, visit https://github.com/twilio/twilio-cli
