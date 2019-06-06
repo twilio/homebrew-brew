@@ -24,7 +24,7 @@ class Twilio < Formula
         *                                                                       *
         *     OR                                                                *
         *                                                                       *
-        *     twilio project:add                                                *
+        *     twilio projects:add                                               *
         *                                                                       *
         *************************************************************************
     EOS
