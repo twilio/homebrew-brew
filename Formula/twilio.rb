@@ -6,7 +6,7 @@ class Twilio < Formula
   url "https://github.com/twilio/homebrew-brew/releases/download/v.0.0.1/twilio-cli-1.1.3.zip"
   version "1.1.2"
   sha256 "8742e240e5f054e7dc6e74ffe03c8276c8270e72b92d081cc8406305a9bd815c"
-  depends_on "thinkingserious/brew/twilio-cli-node"
+  depends_on "twilio/brew/twilio-cli-node"
 
   def install
     inreplace "bin/twilio", /^CLIENT_HOME=/, "export TWILIO_OCLIF_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
