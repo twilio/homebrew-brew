@@ -10,7 +10,7 @@ class Twilio < Formula
 
   def install
     inreplace "bin/twilio", /^CLIENT_HOME=/, "export TWILIO_OCLIF_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
-    inreplace "bin/twilio", "\"$DIR/node\"", "#{Formula["twilio-cli-node"].opt_share}/node"
+    inreplace "bin/twilio", "\"$DIR/node\"", "#{Formula["twilio-cli-node"].libexec}/node"
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/twilio"
   end
