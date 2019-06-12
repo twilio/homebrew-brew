@@ -15,20 +15,17 @@ class Twilio < Formula
     bin.install_symlink libexec/"bin/twilio"
   end
 
-  def caveats
-    s = <<-EOS
-        *************************************************************************
-        *                                                                       *
-        * To get started, please login to your Twilio account:                  *
-        *                                                                       *
-        *     twilio login                                                      *
-        *                                                                       *
-        *     OR                                                                *
-        *                                                                       *
-        *     twilio projects:add                                               *
-        *                                                                       *
-        *************************************************************************
-    EOS
-    s
+  def post_install
+    ohai "*************************************************************************"
+    ohai "*                                                                       *"
+    ohai "* To get started, please login to your Twilio account:                  *"  
+    ohai "*                                                                       *"
+    ohai "*     twilio login                                                      *" 
+    ohai "*                                                                       *"
+    ohai "*     OR                                                                *"    
+    ohai "*                                                                       *"
+    ohai "*     twilio projects:add                                               *"
+    ohai "*                                                                       *"
+    ohai "*************************************************************************"
   end
 end
