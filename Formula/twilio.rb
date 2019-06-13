@@ -5,7 +5,7 @@ class Twilio < Formula
   homepage "https://github.com/twilio/twilio-cli"
   url "https://github.com/twilio/homebrew-brew/releases/download/v0.0.3/twilio-v1.2.0.zip"
   version "1.2.0"
-  sha256 "6039a1d29b52266ecb8888fef8fa3e5c533a9affa781a06aa0abe27e70ef13d9"
+  sha256 "c8fa738006b900fab519092680db1d95dcd9ac69cd98612198c4f4ed6b3678a1"
   depends_on "twilio/brew/twilio-cli-node"
 
   def install
