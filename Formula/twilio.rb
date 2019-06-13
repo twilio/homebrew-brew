@@ -3,7 +3,7 @@ require "language/node"
 class Twilio < Formula
   desc "unleash the power of Twilio from your command prompt"
   homepage "https://github.com/twilio/twilio-cli"
-  url "https://github.com/twilio/homebrew-brew/releases/download/v0.0.2/twilio-v1.2.0.zip"
+  url "https://github.com/twilio/homebrew-brew/releases/download/v0.0.3/twilio-v1.2.0.zip"
   version "1.2.0"
   sha256 "6039a1d29b52266ecb8888fef8fa3e5c533a9affa781a06aa0abe27e70ef13d9"
   depends_on "twilio/brew/twilio-cli-node"
