@@ -24,7 +24,7 @@ class Twilio < Formula
     ohai "*                                                      *"
     ohai "*     OR                                               *"
     ohai "*                                                      *"
-    ohai "*     twilio projects:add                              *"
+    ohai "*     twilio profiles:add                              *"
     ohai "*                                                      *"
     ohai "********************************************************"
   end
