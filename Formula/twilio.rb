@@ -3,9 +3,9 @@ require "language/node"
 class Twilio < Formula
   desc "unleash the power of Twilio from your command prompt"
   homepage "https://github.com/twilio/twilio-cli"
-  url "https://twilio-cli-prod.s3.amazonaws.com/twilio-v1.4.2/twilio-v1.4.2.tar.gz"
-  version "1.4.2"
-  sha256 "9b8c5c3937f316a523515229204b3730cc4852d6ee9e5f97cdf00b097f4a68bc"
+  url "https://twilio-cli-prod.s3.amazonaws.com/twilio-v1.5.0/twilio-v1.5.0.tar.gz"
+  version "1.5.0"
+  sha256 "25d2b30cf915de9db0267d1dbd654217df29b43070873b3da5e05da9a4e315eb"
   depends_on "twilio/brew/twilio-cli-node"
 
   def install
