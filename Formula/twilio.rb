@@ -17,15 +17,15 @@ class Twilio < Formula
 
   def post_install
     ohai "********************************************************"
-    ohai "*                                                      *"
-    ohai "* To get started, please login to your Twilio account: *"
-    ohai "*                                                      *"
-    ohai "*     twilio login                                     *"
-    ohai "*                                                      *"
-    ohai "*     OR                                               *"
-    ohai "*                                                      *"
-    ohai "*     twilio profiles:add                              *"
-    ohai "*                                                      *"
+    ohai "*                                                     *"
+    ohai "* To get started, please create a twilio-cli profile: *"
+    ohai "*                                                     *"
+    ohai "*     twilio login                                    *"
+    ohai "*                                                     *"
+    ohai "*     OR                                              *"
+    ohai "*                                                     *"
+    ohai "*     twilio profiles:create                          *"
+    ohai "*                                                     *"
     ohai "********************************************************"
   end
 end
