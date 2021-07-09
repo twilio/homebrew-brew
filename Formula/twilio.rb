@@ -14,16 +14,7 @@ class Twilio < Formula
   end
 
   def post_install
-    ohai "********************************************************"
-    ohai "*                                                     *"
-    ohai "* To get started, please create a twilio-cli profile: *"
-    ohai "*                                                     *"
-    ohai "*     twilio login                                    *"
-    ohai "*                                                     *"
-    ohai "*     OR                                              *"
-    ohai "*                                                     *"
-    ohai "*     twilio profiles:create                          *"
-    ohai "*                                                     *"
-    ohai "********************************************************"
+    pid = spawn("node #{libexec}/welcome.js")
+    Process.wait pid
   end
 end
