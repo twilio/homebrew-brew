@@ -1,0 +1,38 @@
+name: Homebrew Release
+on:
+  workflow_dispatch:
+    inputs:
+      formula:
+        description: 'Formula to release Homebrew'
+        default: twilio
+      version:
+        description: 'Release version - Same as CLI version'
+        required: true
+      sha:
+        description: 'SHA of tar file created by oclif'
+      pre-release:
+        description: 'If it is a prerelease send true as input'
+        default: 'false'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to homebrew
+        uses: actions/checkout@v2
+      - name: Update Home Brew with latest sha and version
+        run: |
+          source .github/scripts/update-formula.sh "${{github.event.inputs.formula}}" "${{github.event.inputs.version}}" "${{github.event.inputs.sha}}"
+  release:
+    runs-on: ubuntu-latest
+    needs: [update]
+    steps:
+      - name: Checkout to homebrew
+        uses: actions/checkout@v2
+      - run: git pull
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{github.event.inputs.version}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{github.event.inputs.pre-release}}
