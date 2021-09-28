@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout to homebrew
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Update Home Brew with latest sha and version
         run: |
           source .github/scripts/update-formula.sh "${{github.event.inputs.formula}}" "${{github.event.inputs.version}}" "${{github.event.inputs.sha}}"
