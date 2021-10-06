@@ -40,7 +40,7 @@ jobs:
           prerelease: ${{github.event.inputs.pre-release}}
   notify-complete-success:
     needs: [ release ]
-    name: Notify Release Completed
+    name: Notify Release Successful
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,7 +51,8 @@ jobs:
           SLACK_COLOR: "#36a64f"
           SLACK_USERNAME: CLI Release Bot
           SLACK_ICON_EMOJI: ":ship:"
-          SLACK_TITLE: 'Homebrew Release Completed'
+          SLACK_TITLE: 'Twilio CLI'
+          SLACK_MESSAGE: 'Homebrew Release Successful'
           MSG_MINIMAL: actions url
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
