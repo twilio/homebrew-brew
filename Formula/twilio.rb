@@ -9,6 +9,7 @@ class Twilio < Formula
   depends_on "node"
 
   def install
+    inreplace "bin/twilio", /^CLIENT_HOME=/, "export TWILIO_OCLIF_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/twilio"
   end
