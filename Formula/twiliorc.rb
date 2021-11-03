@@ -1,6 +1,6 @@
 require "language/node"
 
-class Twilio@rc < Formula
+class Twiliorc < Formula
   desc "unleash the power of Twilio from your command prompt"
   homepage "https://github.com/twilio/twilio-cli"
   url "https://twilio-cli-prod.s3.amazonaws.com/twilio-v2.27.0-rc.1/twilio-v2.27.0-rc.1.tar.gz"
