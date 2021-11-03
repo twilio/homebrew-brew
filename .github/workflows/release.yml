@@ -4,7 +4,7 @@ on:
     inputs:
       formula:
         description: 'Formula to release Homebrew'
-        default: twilio@rc
+        default: twilio
       version:
         description: 'Release version - Same as CLI version'
         required: true
