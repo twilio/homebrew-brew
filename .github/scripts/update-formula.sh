@@ -7,8 +7,8 @@ if [ "$version" == '' ] || [ "$sha" == '' ]; then
 fi
 formula_path="Formula/$formula.rb"
 sed -E -i.bak "s/twilio-v$version_pattern/twilio-v$version/g" "$formula_path"
-sed -E -i.bak "s/version .*/version \"$version\"/" "$formula_path"
-sed -E -i.bak "s/sha256 .*/sha256 \"$sha\"/" "$formula_path"
+sed -i.bak "s/version .*/version \"$version\"/" "$formula_path"
+sed -i.bak "s/sha256 .*/sha256 \"$sha\"/" "$formula_path"
 echo "Git configurations"
 git config --global user.email "team_interfaces+github@twilio.com"
 git config --global user.name "twilio-dx"
