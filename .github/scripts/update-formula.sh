@@ -5,6 +5,15 @@ sha=$3
 if [ "$version" == '' ] || [ "$sha" == '' ]; then
   exit
 fi
+#fetch the current version
+current_version=$(grep -w "version " Formula/$formula.rb | awk '{print $2}' | tr -d \")
+
+if [ "$version" != "$current_version" ]; then
+  cp Formula/$formula.rb Formula/$formula@$current_version.rb
+  class_name=$(echo $formula | sed -e "s/\b./\u&/g")AT$(echo $current_version | tr -dc '[:alnum:]\n\r' | sed 's/[a-z]/\U&/g')
+  #update the class name for the new version file created
+  sed -i.bak "s/^class [^ ]*/class $class_name/" Formula/$formula@$current_version.rb
+fi
 formula_path="Formula/$formula.rb"
 sed -E -i.bak "s/twilio-v$version_pattern/twilio-v$version/g" "$formula_path"
 sed -i.bak "s/version .*/version \"$version\"/" "$formula_path"
