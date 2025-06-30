@@ -1,4 +1,4 @@
-version_pattern="[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+\.[0-9])?"
+version_pattern="[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+\.[0-9]+)?"
 formula=$1
 version=$2
 sha=$3
