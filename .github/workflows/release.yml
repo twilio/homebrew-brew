@@ -16,42 +16,28 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-x64
     steps:
       - name: Checkout to homebrew
-        uses: actions/checkout@v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Update Home Brew with latest sha and version
         run: |
           source .github/scripts/update-formula.sh "${{github.event.inputs.formula}}" "${{github.event.inputs.version}}" "${{github.event.inputs.sha}}"
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-x64
     needs: [update]
+    permissions:
+      contents: write
     steps:
       - name: Checkout to homebrew
-        uses: actions/checkout@v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - run: git pull
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{github.event.inputs.version}}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: ${{github.event.inputs.pre-release}}
-  notify-complete-fail:
-    if: ${{ failure() || cancelled() }}
-    needs: [ release ]
-    name: Notify Release Failed
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+      - name: Create GitHub Release
         env:
-          SLACK_WEBHOOK: ${{ secrets.ALERT_SLACK_WEB_HOOK }}
-          SLACK_COLOR: "#ff3333"
-          SLACK_USERNAME: CLI Release Bot
-          SLACK_ICON_EMOJI: ":ship:"
-          SLACK_TITLE: "Twilio Cli"
-          SLACK_MESSAGE: 'Homebrew Release Failed'
-          MSG_MINIMAL: actions url
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=()
+          [ "${{ github.event.inputs.pre-release }}" = "true" ] && ARGS+=(--prerelease)
+          gh release create "${{ github.event.inputs.version }}" --generate-notes "${ARGS[@]}"
