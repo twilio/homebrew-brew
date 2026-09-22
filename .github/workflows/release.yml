@@ -23,8 +23,17 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Update Home Brew with latest sha and version
+        # GH_TOKEN is needed because the formula update now opens a PR rather
+        # than pushing to main. Inputs go through env instead of being
+        # interpolated into the command, so a value containing shell
+        # metacharacters cannot inject commands into a step holding a token.
         run: |
-          source .github/scripts/update-formula.sh "${{github.event.inputs.formula}}" "${{github.event.inputs.version}}" "${{github.event.inputs.sha}}"
+          source .github/scripts/update-formula.sh "$FORMULA" "$VERSION" "$SHA"
+        env:
+          FORMULA: ${{ github.event.inputs.formula }}
+          VERSION: ${{ github.event.inputs.version }}
+          SHA: ${{ github.event.inputs.sha }}
+          GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
   release:
     runs-on: ubuntu-x64
     needs: [update]
