@@ -11,7 +11,7 @@ class Twilio < Formula
   def install
     inreplace "bin/twilio", /^CLIENT_HOME=/, "export TWILIO_OCLIF_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
     libexec.install Dir["*"]
-    (bin/"twilio").write_env_script libexec/"bin/twilio", PATH: "#{Formula["node@24"].opt_bin}:$PATH"
+    (bin/"twilio").write_env_script libexec/"bin/twilio", PATH: "#{Formula["node@22"].opt_bin}:$PATH"
   end
 
   def post_install
