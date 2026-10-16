@@ -1,0 +1,45 @@
+name: Test Homebrew Install
+on:
+  pull_request:
+    paths:
+      - 'Formula/**'
+      - '.github/workflows/test.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'Formula/**'
+      - '.github/workflows/test.yml'
+  workflow_dispatch:
+
+jobs:
+  install:
+    name: Install on macOS
+    runs-on: macos-x64
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      # Same as the documented `brew tap twilio/brew && brew install twilio`,
+      # but the tap is pointed at this checkout so the change under test is installed.
+      - name: Tap and install twilio
+        run: |
+          brew tap twilio/brew "$GITHUB_WORKSPACE"
+          brew install twilio/brew/twilio
+
+      - name: Verify CLI
+        run: |
+          twilio --version
+          twilio help
+
+      - name: Install serverless plugin
+        run: twilio plugins:install @twilio-labs/plugin-serverless
+
+      - name: Install flex plugin
+        run: twilio plugins:install @twilio-labs/plugin-flex
+
+      - name: Verify plugins
+        run: |
+          twilio plugins | tee plugins.txt
+          grep -q "@twilio-labs/plugin-serverless" plugins.txt
+          grep -q "@twilio-labs/plugin-flex" plugins.txt
